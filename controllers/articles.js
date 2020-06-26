@@ -10,10 +10,14 @@ module.exports.getArticles = (req, res, next) => {
 };
 
 module.exports.createArticle = (req, res, next) => {
-  const { name, link } = req.body;
+  const {
+    keyword, title, text, date, source, link, image,
+  } = req.body;
   const owner = req.user._id;
 
-  Article.create({ name, link, owner })
+  Article.create({
+    keyword, title, text, date, source, link, image, owner,
+  })
     .then((article) => res.send({ data: article }))
     .catch(next);
 };
