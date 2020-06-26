@@ -26,7 +26,7 @@ const articleSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: (link) => cardsValidator.isURL(link),
+      validator: (link) => articlesValidator.isURL(link),
       message: (props) => `${props.value} is not valid link!`,
     },
   },
