@@ -12,4 +12,3 @@ module.exports.getUser = (req, res, next) => {
     })
     .catch(next);
 };
-
