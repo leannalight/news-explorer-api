@@ -9,8 +9,6 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
-const NotFoundError = require('./errors/not-found-err');
-
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT, MONGODB_URL } = require('./config');

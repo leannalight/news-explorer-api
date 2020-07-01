@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { DuplicateEmailMsg } = require('../constants/constants');
 
 module.exports.errorHandler = (error, req, res, next) => {
   let { statusCode = 500, message } = error;
@@ -9,7 +10,7 @@ module.exports.errorHandler = (error, req, res, next) => {
   }
   if (error.code === 11000) {
     statusCode = 409;
-    message = 'Данный email уже зарегистрирован';
+    message = DuplicateEmailMsg;
   }
   res.status(statusCode).send({
     message: statusCode === 500 ? 'Произошла ошибка' : message,

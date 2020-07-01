@@ -1,7 +1,8 @@
 const Article = require('../models/article');
 const NotFoundError = require('../errors/not-found-err');
 const ForbiddenError = require('../errors/forbidden-err');
-const article = require('../models/article');
+const { ArtNotFoundMsg } = require('../constants/constants');
+const { AccessDeniedMsg } = require('../constants/constants');
 
 module.exports.createArticle = (req, res, next) => {
   const {
@@ -27,11 +28,11 @@ module.exports.deleteArticleById = (req, res, next) => {
   const { articleId } = req.params;
   Article.findById(articleId).populate('owner')
     .orFail(() => {
-      throw new NotFoundError('Статья не найдена');
+      throw new NotFoundError(ArtNotFoundMsg);
     })
     .then((article) => {
       if (article.owner._id.toString() !== req.user._id) {
-        throw new ForbiddenError('Доступ запрещён');
+        throw new ForbiddenError(AccessDeniedMsg);
       }
       return article.remove()
         .then(() => res.send({ article: article.withoutOwner() }));
