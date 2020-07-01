@@ -13,7 +13,7 @@ const NotFoundError = require('./errors/not-found-err');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000 } = process.env;
+const { PORT, MONGODB_URL } = require('./config');
 
 const { errorHandler } = require('./middlewares/error-handler');
 const router = require('./routes/index');
@@ -24,7 +24,7 @@ const limiter = rateLimit({
 });
 
 
-mongoose.connect('mongodb://localhost:27017/newsdb', {
+mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
