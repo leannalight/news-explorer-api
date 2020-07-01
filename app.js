@@ -24,7 +24,7 @@ const limiter = rateLimit({
 });
 
 
-mongoose.connect('mongodb://localhost:27017/newsexplorerdb', {
+mongoose.connect('mongodb://localhost:27017/newsdb', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
@@ -40,14 +40,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(limiter);
 
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
-
 app.use(requestLogger);
-app.use('/', router);
+app.use(router);
 
 app.use(errorLogger);
 app.use(errors());

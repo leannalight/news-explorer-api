@@ -1,6 +1,7 @@
 const Article = require('../models/article');
 const NotFoundError = require('../errors/not-found-err');
 const ForbiddenError = require('../errors/forbidden-err');
+const article = require('../models/article');
 
 module.exports.getArticles = (req, res, next) => {
   Article.find({})

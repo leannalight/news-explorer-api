@@ -7,14 +7,14 @@ const { PrivateKey } = require('../config');
 
 module.exports.createUser = (req, res, next) => {
   const {
-    name, about, avatar, email, password,
+    name, email, password,
   } = req.body;
 
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
-      name, about, avatar, email, password: hash,
+      name, email, password: hash,
     }))
-    .then((user) => res.send({ data: user.omitPrivate() }))
+    .then((user) => res.status(201).send({ data: user.omitPrivate() }))
     .catch(next);
 };
 
@@ -29,7 +29,7 @@ module.exports.login = (req, res, next) => {
         httpOnly: true,
         sameSite: true,
       });
-      res.send({ token });
+      return res.send({ token });
     })
     .catch((error) => next(new UnauthorizedError(error.message)));
 };
