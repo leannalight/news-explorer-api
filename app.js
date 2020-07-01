@@ -1,5 +1,5 @@
-const express = require('express');
 require('dotenv').config();
+const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
@@ -22,7 +22,6 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
 });
-
 
 mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
