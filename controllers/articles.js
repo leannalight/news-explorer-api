@@ -12,13 +12,13 @@ module.exports.createArticle = (req, res, next) => {
   Article.create({
     keyword, title, text, date, source, link, image, owner,
   })
-    .then((article) => res.status(201).send({ data: article.omitPrivate() }))
+    .then((article) => res.status(201).send({ article: article.withoutOwner() }))
     .catch(next);
 };
 
 module.exports.getArticles = (req, res, next) => {
-  Article.find({})
-    .populate('owner')
+const owner = req.user._id;
+  Article.find({ owner })
     .then((articles) => res.send({ data: articles }))
     .catch(next);
 };
@@ -34,7 +34,7 @@ module.exports.deleteArticleById = (req, res, next) => {
         throw new ForbiddenError('Доступ запрещён');
       }
       return article.remove()
-        .then(() => res.send({ data: article }));
+        .then(() => res.send({ article: article.withoutOwner() }));
     })
     .catch(next);
 };
