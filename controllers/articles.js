@@ -3,13 +3,6 @@ const NotFoundError = require('../errors/not-found-err');
 const ForbiddenError = require('../errors/forbidden-err');
 const article = require('../models/article');
 
-module.exports.getArticles = (req, res, next) => {
-  Article.find({})
-    .populate('owner')
-    .then((articles) => res.send({ data: articles }))
-    .catch(next);
-};
-
 module.exports.createArticle = (req, res, next) => {
   const {
     keyword, title, text, date, source, link, image,
@@ -19,7 +12,14 @@ module.exports.createArticle = (req, res, next) => {
   Article.create({
     keyword, title, text, date, source, link, image, owner,
   })
-    .then((article) => res.send({ data: article }))
+    .then((article) => res.status(201).send({ data: article.omitPrivate() }))
+    .catch(next);
+};
+
+module.exports.getArticles = (req, res, next) => {
+  Article.find({})
+    .populate('owner')
+    .then((articles) => res.send({ data: articles }))
     .catch(next);
 };
 
