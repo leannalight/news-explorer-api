@@ -16,7 +16,6 @@ const { PORT, MONGODB_URL } = require('./config');
 
 const { errorHandler } = require('./middlewares/error-handler');
 
-
 mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
