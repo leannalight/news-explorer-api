@@ -1,7 +1,8 @@
 # news-explorer-api
-## Актуальная версия v0.0.3
+## Актуальная версия v0.0.4
 
 # [https:/api.explorenews.tk/](https:/api.explorenews.tk/)
+# [http:/api.explorenews.tk/](http:/api.explorenews.tk/)
 
 ### POST /signup - регистрация нового пользователя - в ответ придет объект пользователя
 
