@@ -1,5 +1,5 @@
 # news-explorer-api
-## Актуальная версия v0.0.2
+## Актуальная версия v0.0.3
 
 # [https:/api.explorenews.tk/](https:/api.explorenews.tk/)
 
