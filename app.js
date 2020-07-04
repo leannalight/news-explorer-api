@@ -3,12 +3,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
-const router = require('./routes/index');
 
 const app = express();
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const limiter = require('./middlewares/limiter');
+const router = require('./routes/index');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
@@ -21,9 +21,7 @@ mongoose.connect(MONGODB_URL, {
   useCreateIndex: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
-})
-  .then(() => console.log('MongoDB has started ...'))
-  .catch((error) => console.log(error));
+});
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -38,5 +36,4 @@ app.use(errors());
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`App listening at http://localhost:${PORT}`);
 });

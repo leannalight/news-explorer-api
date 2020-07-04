@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { DuplicateEmailMsg } = require('../constants/constants');
-
+// eslint-disable-next-line no-unused-vars
 module.exports.errorHandler = (error, req, res, next) => {
   let { statusCode = 500, message } = error;
 

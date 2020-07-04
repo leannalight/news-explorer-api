@@ -1,12 +1,14 @@
 # news-explorer-api
-## Актуальная версия v0.0.4
+## Актуальная версия v0.0.5
+
+### Бэкенд к дипломному проекту News Explorer для Яндекс.Практикум.
 
 # [https://api.explorenews.tk/](https://api.explorenews.tk/)
 # [http://api.explorenews.tk/](http://api.explorenews.tk/)
 
 ### POST /signup - регистрация нового пользователя - в ответ придет объект пользователя
 
-### POST /signin - авторизация формат: ```{ "email": "hello@gmail.com", "password": "12345678" }``` в ответ придет cookie s jwt
+### POST /signin - авторизация формат: ```{ "email": "hello@gmail.com", "password": "12345678" }``` в ответ придет cookie с jwt
 
 ### GET /users/me -возвращает информацию о пользователе (email и имя)
 
@@ -15,6 +17,8 @@
 ### POST /articles - создаёт статью с переданными в теле (keyword, title, text, date, source, link и image)
 
 ### DELETE /articles/articleId - удаляет сохранённую статью  по _id
+
+### К серверу можно обратиться по публичному IP-адресу ```84.201.152.250```
 
 ## Технологии:
 
