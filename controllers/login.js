@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const UnauthorizedError = require('../errors/unauthorized-err');
 
 const { PrivateKey } = require('../config');
 
@@ -31,5 +30,5 @@ module.exports.login = (req, res, next) => {
       });
       return res.send({ token });
     })
-    .catch((error) => next(new UnauthorizedError(error.message)));
+    .catch(next);
 };
