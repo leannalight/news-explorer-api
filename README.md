@@ -1,7 +1,7 @@
 # news-explorer-api
 ## Актуальная версия v0.0.5
 
-### Бэкенд к дипломному проекту News Explorer для Яндекс.Практикум.
+### Бэкенд к дипломному проекту News Explorer для Яндекс.Практикум. Реализация API.
 
 # [https://api.explorenews.tk/](https://api.explorenews.tk/)
 # [http://api.explorenews.tk/](http://api.explorenews.tk/)
