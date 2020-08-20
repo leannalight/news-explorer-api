@@ -19,11 +19,17 @@ const { errorHandler } = require('./middlewares/error-handler');
 
 const corsOptions = {
   origin:[
-    'https://explorenews.tk/',
+    'http://explorenews.tk',
+    'https://explorenews.tk',
     'http://localhost:8080',
+    'http://newsapi.org',
     'https://leannalight.github.io/news-explorer-frontend',
     'https://leannalight.github.io'],
   credentials: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'Authorization', 'authorizationNews']
 };
 
 app.use(cors(corsOptions));
