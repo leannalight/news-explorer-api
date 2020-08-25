@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const BadRequestError = require('../errors/bad-request-err');
 
 const { PrivateKey } = require('../config');
 
@@ -50,3 +51,12 @@ module.exports.login = async (req, res, next) => {
       return next(error);
   }
 };
+// удаляем куки, чтобы выйти / logout
+module.exports.removeCookie = (req, res, next) => {
+  res.cookie('jwt', '', {
+    maxAge: -1,
+    httpOnly: true,
+  });
+  res.send({ message: 'Выход успешен' })
+  .catch((error) => next(new BadRequestError(error.message)));
+}
