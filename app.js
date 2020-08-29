@@ -21,14 +21,13 @@ const corsOptions = {
   origin:[
     'http://localhost:8080',
     'http://newsapi.org',
+    'https://nomoreparties.co',
     'http://explorenews.tk', 'http://wwww.explorenews.tk',
     'https://explorenews.tk','https://wwww.explorenews.tk',
     'https://leannalight.github.io/news-explorer-frontend',
     'https://leannalight.github.io'],
   credentials: true,
   methods: 'GET,POST,DELETE',
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 
