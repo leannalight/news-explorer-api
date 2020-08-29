@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const BadRequestError = require('../errors/bad-request-err');
+const { ServerCannotProcessMsg } = require('../constants/constants');
 
 const { PrivateKey } = require('../config');
 
@@ -40,10 +41,10 @@ module.exports.login = async (req, res, next) => {
     const userlogin = await User.findUserByCredentials(email, password);
     const token = jwt.sign({ _id: userlogin._id }, PrivateKey, { expiresIn: '7d' });
     res.cookie('jwt', token, {
-      maxAge: 3600000 * 24 * 7,
+      maxAge: 3600000 * 24 * 1, // срок жизни куки 1 день
       httpOnly: true,
-      sameSite: 'none',
-      secure: true,
+      sameSite: 'none', // требования браузера при кросс-доменных запросах
+      secure: true, // требования браузера при кросс-доменных запросах
       domain: 'explorenews.tk',
     });
     return res.send({ token });
@@ -57,6 +58,6 @@ module.exports.removeCookie = (req, res, next) => {
     maxAge: -1,
     httpOnly: true,
   });
-  res.send({ message: 'Выход успешен' })
-  .catch((error) => next(new BadRequestError(error.message)));
+  return res.send({ message: 'Выход успешен' })
+  .catch(() => next(new BadRequestError(ServerCannotProcessMsg)));
 }

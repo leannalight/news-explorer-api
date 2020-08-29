@@ -5,6 +5,7 @@ const UserNotFoundMsg = 'User is not found';
 const NeedAuthMsg = 'Authorization is required';
 const DuplicateEmailMsg = 'This email is already registered';
 const InvalidErrMsg = 'Invalid email or password';
+const ServerCannotProcessMsg = 'The server cannot process the request due to client error';
 
 module.exports = {
   ArtNotFoundMsg,
@@ -14,4 +15,5 @@ module.exports = {
   NeedAuthMsg,
   DuplicateEmailMsg,
   InvalidErrMsg,
+  ServerCannotProcessMsg
 };
