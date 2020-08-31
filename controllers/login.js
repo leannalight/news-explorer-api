@@ -18,7 +18,7 @@ module.exports.createUser = (req, res, next) => {
     .then((user) => res.status(201).send({ user: user.omitPrivate() }))
     .catch(next);
 };
-/* // ВАриант 1
+/* // Вариант 1 - Если запускаем проект локально!
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
 
@@ -75,5 +75,5 @@ module.exports.removeCookie = (req, res, next) => {
     httpOnly: true,
   });
   res.send({ message: 'Выход успешен' })
-  .catch((error) => next(new BadRequestError(error.message)));
-}
+    .catch(() => next(new BadRequestError(ServerCannotProcessMsg)));
+};
