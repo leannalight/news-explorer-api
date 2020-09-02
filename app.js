@@ -27,8 +27,7 @@ const corsOptions = {
     'https://leannalight.github.io/news-explorer-frontend',
     'https://leannalight.github.io'],
   credentials: true,
-  methods: 'GET,POST,DELETE', /*
-  allowedHeaders: ['Content-Type', 'Authorization'] */
+  methods: 'GET,POST,DELETE',
 };
 
 app.use(cors(corsOptions));
@@ -38,7 +37,11 @@ mongoose.connect(MONGODB_URL, {
   useCreateIndex: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
-});
+})
+  // eslint-disable-next-line no-console
+  .then(() => console.log('MongoDB has started ...'))
+  // eslint-disable-next-line no-console
+  .catch((error) => console.log(error));
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -53,4 +56,6 @@ app.use(errors());
 app.use(errorHandler);
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
+  console.log(`App listening at http://localhost:${PORT}`);
 });
